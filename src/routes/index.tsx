@@ -88,34 +88,57 @@ function Index() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-8 sm:px-6">
+    <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-4 sm:px-6">
       <SiteNav points={points} />
 
-      <section className="mt-12 text-center">
-        <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          <Leaf className="size-3.5 text-leaf" /> AI intake inspection
+      <section className="mt-10 text-center">
+        <p className="sticker inline-flex animate-wiggle items-center gap-2 bg-lime px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.16em]">
+          <Leaf className="size-3.5" /> ai scans your empties
         </p>
-        <h1 className="mx-auto mt-5 max-w-3xl text-4xl leading-tight sm:text-6xl">
-          Give us your empties. Get points for glam.
+        <h1 className="mx-auto mt-6 max-w-3xl text-5xl leading-[0.95] sm:text-7xl">
+          give us your{" "}
+          <span className="gradient-hero chunky inline-block -rotate-2 rounded-2xl px-3 py-1">
+            empties
+          </span>
+          , get points for glam.
         </h1>
-        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          Plastic, glass or silicone — photograph any finished skincare container. Our AI checks the
-          material and condition, accepts it on the spot, and credits points you can spend on
-          skincare from our partner manufacturers.
+        <p className="mx-auto mt-5 max-w-xl font-medium text-muted-foreground">
+          plastic, glass or silicone — snap your finished skincare bottle. our AI checks the vibe
+          (and the condition), accepts it on the spot, and drops points you can spend on real
+          skincare.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button asChild variant="secondary" className="rounded-full">
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
+          <Button asChild className="chunky pop-hover rounded-full bg-bubble font-extrabold text-foreground hover:bg-bubble">
             <Link to="/shop">
-              <ShoppingBag className="size-4" /> Spend your points
+              <ShoppingBag className="size-4" /> spend your points
             </Link>
           </Button>
-          <Button asChild variant="ghost" className="rounded-full">
-            <Link to="/partners">Supply raw material to your brand</Link>
+          <Button asChild className="chunky pop-hover rounded-full bg-card font-extrabold text-foreground hover:bg-card">
+            <Link to="/partners">brands: get recycled material</Link>
           </Button>
         </div>
       </section>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+      <div className="chunky mt-10 overflow-hidden rounded-full bg-foreground py-2">
+        <div className="animate-marquee flex w-max gap-8 whitespace-nowrap font-display text-sm font-extrabold uppercase tracking-wider text-background">
+          {Array.from({ length: 2 }).map((_, r) => (
+            <span key={r} className="flex gap-8">
+              {[
+                "♻︎ scan it",
+                "✦ send it",
+                "★ earn points",
+                "✿ shop skincare",
+                "♻︎ zero landfill",
+                "✦ closed loop",
+              ].map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_1fr]">
         <div className="space-y-6">
           <BottleUploader
             image={image}
@@ -136,36 +159,38 @@ function Index() {
         </div>
 
         <aside className="space-y-6">
-          <div className="surface gradient-soft rounded-3xl p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Your wallet
+          <div className="surface gradient-soft rounded-[2rem] p-6">
+            <p className="sticker inline-block bg-card px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.14em]">
+              your wallet
             </p>
-            <p className="mt-2 font-display text-5xl font-semibold">{points}</p>
-            <p className="text-sm text-muted-foreground">points available · {tier.name} tier</p>
-            <Progress value={progress} className="mt-4" />
-            <p className="mt-2 text-xs text-muted-foreground">
+            <p className="mt-3 font-display text-6xl font-extrabold leading-none">{points}</p>
+            <p className="text-sm font-bold text-muted-foreground">
+              points · {tier.name} tier
+            </p>
+            <Progress value={progress} className="chunky mt-4 h-4 rounded-full" />
+            <p className="mt-2 text-xs font-semibold text-muted-foreground">
               {tier.next
-                ? `${Math.max(0, tier.next - points)} points to the next tier`
-                : "Top tier reached — legendary returner"}
+                ? `${Math.max(0, tier.next - points)} points to level up`
+                : "top tier unlocked — legend"}
             </p>
             <div className="mt-5 grid grid-cols-2 gap-3">
-              <div className="rounded-2xl bg-card/80 px-4 py-3">
+              <div className="chunky rounded-2xl bg-card px-4 py-3">
                 <Recycle className="size-4 text-leaf" />
-                <p className="mt-1 text-xl font-semibold">
+                <p className="mt-1 font-display text-2xl font-extrabold">
                   {drops.filter((d) => d.accepted).length}
                 </p>
-                <p className="text-xs text-muted-foreground">bottles accepted</p>
+                <p className="text-xs font-semibold text-muted-foreground">bottles accepted</p>
               </div>
-              <div className="rounded-2xl bg-card/80 px-4 py-3">
+              <div className="chunky rounded-2xl bg-card px-4 py-3">
                 <Weight className="size-4 text-leaf" />
-                <p className="mt-1 text-xl font-semibold">{materialSaved(drops)}g</p>
-                <p className="text-xs text-muted-foreground">material recovered</p>
+                <p className="mt-1 font-display text-2xl font-extrabold">{materialSaved(drops)}g</p>
+                <p className="text-xs font-semibold text-muted-foreground">material recovered</p>
               </div>
             </div>
           </div>
 
           <div>
-            <h2 className="mb-3 text-xl">Your drop-offs</h2>
+            <h2 className="mb-3 text-2xl">your drop-offs</h2>
             <HistoryList
               entries={drops}
               onRemove={(id) => update(drops.filter((e) => e.id !== id))}
