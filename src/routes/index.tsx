@@ -171,7 +171,7 @@ function Index() {
             <p className="mt-2 text-xs font-semibold text-muted-foreground">
               {tier.next
                 ? `${Math.max(0, tier.next - points)} points to level up`
-                : "top tier unlocked — legend 🏆"}
+                : "top tier unlocked — legend"}
             </p>
             <div className="mt-5 grid grid-cols-2 gap-3">
               <div className="chunky rounded-2xl bg-card px-4 py-3">

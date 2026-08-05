@@ -57,7 +57,7 @@ export function ResultCard({ result, saved, onSave }: Props) {
         )}
         <span>
           {result.accepted
-            ? `accepted — worth ${result.points} points 🎉`
+            ? `accepted — worth ${result.points} points`
             : "not accepted at intake."}{" "}
           {result.note}
         </span>

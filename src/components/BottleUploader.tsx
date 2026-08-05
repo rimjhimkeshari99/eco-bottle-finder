@@ -94,7 +94,7 @@ export function BottleUploader({ image, loading, onSelect, onClear, onScan }: Pr
           </span>
           <p className="font-display text-2xl font-extrabold">drop that empty here</p>
           <p className="max-w-xs text-sm font-medium text-muted-foreground">
-            serums, cleansers, jars, pumps — one bottle per pic, label facing the cam 📸
+            serums, cleansers, jars, pumps — one bottle per pic, label facing the cam
           </p>
           <Button className="chunky pop-hover mt-2 rounded-full bg-lime font-extrabold text-foreground hover:bg-lime">
             browse photos

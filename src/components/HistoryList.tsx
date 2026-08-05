@@ -13,7 +13,7 @@ export function HistoryList({
     return (
       <div className="surface flex flex-col items-center gap-2 rounded-[2rem] px-6 py-12 text-center">
         <Leaf className="size-7 animate-wiggle text-leaf" />
-        <p className="font-display text-xl font-extrabold">nothing here yet 👀</p>
+        <p className="font-display text-xl font-extrabold">nothing here yet</p>
         <p className="max-w-xs text-sm font-medium text-muted-foreground">
           scan your first empty and watch the points roll in.
         </p>
