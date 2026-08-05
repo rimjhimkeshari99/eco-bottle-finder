@@ -26,7 +26,7 @@ export function BottleUploader({ image, loading, onSelect, onClear, onScan }: Pr
   );
 
   return (
-    <div className="surface rounded-3xl p-5 sm:p-6">
+    <div className="surface rounded-[2rem] p-4 sm:p-5">
       <input
         ref={inputRef}
         type="file"
@@ -37,7 +37,7 @@ export function BottleUploader({ image, loading, onSelect, onClear, onScan }: Pr
 
       {image ? (
         <div className="space-y-4">
-          <div className="relative overflow-hidden rounded-2xl bg-muted">
+          <div className="chunky relative overflow-hidden rounded-3xl bg-muted">
             <img
               src={image}
               alt="Uploaded skincare bottle awaiting plastic identification"
@@ -47,19 +47,24 @@ export function BottleUploader({ image, loading, onSelect, onClear, onScan }: Pr
               type="button"
               onClick={onClear}
               aria-label="Remove photo"
-              className="absolute right-3 top-3 rounded-full bg-background/85 p-2 text-foreground backdrop-blur transition hover:bg-background"
+              className="sticker absolute right-3 top-3 bg-card p-2 text-foreground transition hover:bg-lime"
             >
               <X className="size-4" />
             </button>
           </div>
-          <Button size="lg" className="w-full rounded-full" onClick={onScan} disabled={loading}>
+          <Button
+            size="lg"
+            className="chunky pop-hover w-full rounded-full text-base font-extrabold"
+            onClick={onScan}
+            disabled={loading}
+          >
             {loading ? (
               <>
-                <Loader2 className="size-4 animate-spin" /> Analysing plastic…
+                <Loader2 className="size-4 animate-spin" /> scanning your empty…
               </>
             ) : (
               <>
-                <Camera className="size-4" /> Identify plastic type
+                <Camera className="size-4" /> scan it →
               </>
             )}
           </Button>
@@ -80,19 +85,19 @@ export function BottleUploader({ image, loading, onSelect, onClear, onScan }: Pr
           role="button"
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && inputRef.current?.click()}
-          className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-14 text-center transition ${
-            dragging ? "border-primary bg-secondary/60" : "border-border gradient-soft"
+          className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed px-6 py-14 text-center transition ${
+            dragging ? "border-foreground bg-lime" : "border-foreground/40 gradient-soft"
           }`}
         >
-          <span className="gradient-hero flex size-14 items-center justify-center rounded-2xl text-primary-foreground shadow-glow">
+          <span className="gradient-hero chunky flex size-16 animate-float items-center justify-center rounded-2xl text-foreground">
             <Upload className="size-6" />
           </span>
-          <p className="font-semibold">Drop a bottle photo here</p>
-          <p className="max-w-xs text-sm text-muted-foreground">
-            Serums, cleansers, jars, pumps — one container per photo, label facing the camera.
+          <p className="font-display text-2xl font-extrabold">drop that empty here</p>
+          <p className="max-w-xs text-sm font-medium text-muted-foreground">
+            serums, cleansers, jars, pumps — one bottle per pic, label facing the cam 📸
           </p>
-          <Button variant="secondary" className="mt-2 rounded-full">
-            Browse photos
+          <Button className="chunky pop-hover mt-2 rounded-full bg-lime font-extrabold text-foreground hover:bg-lime">
+            browse photos
           </Button>
         </div>
       )}

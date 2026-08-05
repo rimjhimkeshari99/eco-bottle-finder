@@ -17,18 +17,18 @@ const CONDITION_LABEL: Record<Assessment["condition"], string> = {
 
 export function ResultCard({ result, saved, onSave }: Props) {
   return (
-    <div className="surface rounded-3xl p-6">
+    <div className="surface animate-scale-in rounded-[2rem] p-5 sm:p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            AI intake inspection
+          <p className="sticker inline-block bg-sky px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.14em]">
+            ai verdict
           </p>
-          <h2 className="mt-1 text-2xl">{result.productName}</h2>
-          <p className="text-sm text-muted-foreground">{result.materialDetail}</p>
+          <h2 className="mt-2 text-2xl">{result.productName}</h2>
+          <p className="text-sm font-medium text-muted-foreground">{result.materialDetail}</p>
         </div>
-        <div className="gradient-hero flex size-16 shrink-0 flex-col items-center justify-center rounded-2xl px-1 text-center text-primary-foreground shadow-glow">
+        <div className="gradient-hero chunky flex size-16 shrink-0 flex-col items-center justify-center rounded-2xl px-1 text-center text-foreground">
           <Recycle className="size-4" />
-          <span className="text-[11px] font-semibold leading-tight">
+          <span className="text-[11px] font-extrabold leading-tight">
             {result.resinCode ? `#${result.resinCode}` : MATERIAL_LABEL[result.material]}
           </span>
         </div>
@@ -46,10 +46,8 @@ export function ResultCard({ result, saved, onSave }: Props) {
       </div>
 
       <div
-        className={`mt-4 flex items-start gap-2 rounded-2xl px-4 py-3 text-sm font-medium ${
-          result.accepted
-            ? "bg-secondary text-secondary-foreground"
-            : "bg-destructive/10 text-destructive"
+        className={`chunky mt-4 flex items-start gap-2 rounded-2xl px-4 py-3 text-sm font-semibold ${
+          result.accepted ? "bg-lime text-foreground" : "bg-destructive/15 text-destructive"
         }`}
       >
         {result.accepted ? (
@@ -59,8 +57,8 @@ export function ResultCard({ result, saved, onSave }: Props) {
         )}
         <span>
           {result.accepted
-            ? `Accepted for drop-off — worth ${result.points} points.`
-            : "Not accepted at intake."}{" "}
+            ? `accepted — worth ${result.points} points 🎉`
+            : "not accepted at intake."}{" "}
           {result.note}
         </span>
       </div>
@@ -69,27 +67,27 @@ export function ResultCard({ result, saved, onSave }: Props) {
         <ol className="mt-5 space-y-2">
           {result.prepSteps.map((step, i) => (
             <li key={i} className="flex gap-3 text-sm">
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-semibold">
+              <span className="sticker flex size-6 shrink-0 items-center justify-center bg-card text-xs font-extrabold">
                 {i + 1}
               </span>
-              <span className="pt-0.5 text-muted-foreground">{step}</span>
+              <span className="pt-0.5 font-medium text-muted-foreground">{step}</span>
             </li>
           ))}
         </ol>
       )}
 
       <Button
-        className="mt-6 w-full rounded-full"
+        className="chunky pop-hover mt-6 w-full rounded-full text-base font-extrabold"
         onClick={onSave}
         disabled={saved || !result.accepted}
         variant={saved || !result.accepted ? "secondary" : "default"}
       >
         <Sparkles className="size-4" />
         {!result.accepted
-          ? "Cannot be accepted — try another item"
+          ? "can't take this one — try another"
           : saved
-            ? "Logged to your drop-offs"
-            : `Confirm drop-off & claim ${result.points} points`}
+            ? "logged ✓"
+            : `claim ${result.points} points`}
       </Button>
     </div>
   );
@@ -97,9 +95,9 @@ export function ResultCard({ result, saved, onSave }: Props) {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl bg-muted/70 px-4 py-3">
-      <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p className="mt-1 text-sm font-semibold">{value}</p>
+    <div className="chunky rounded-2xl bg-muted px-4 py-3">
+      <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">{label}</p>
+      <p className="mt-1 text-sm font-extrabold">{value}</p>
     </div>
   );
 }
