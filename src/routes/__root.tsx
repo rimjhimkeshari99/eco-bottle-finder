@@ -79,18 +79,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ReBottle — AI Skincare Bottle Recycling" },
+      { title: "Green Glam — Return Skincare Empties, Earn Points" },
       {
         name: "description",
         content:
-          "Snap your empty skincare bottle, let AI identify its plastic type, track your recycling history and earn eco points.",
+          "Return skincare empties in plastic, glass or silicone. AI checks their condition, we accept them and pay you points to spend on skincare.",
       },
-      { name: "author", content: "ReBottle" },
-      { property: "og:title", content: "ReBottle — AI Skincare Bottle Recycling" },
+      { name: "author", content: "Green Glam" },
+      { property: "og:title", content: "Green Glam — Return Skincare Empties, Earn Points" },
       {
         property: "og:description",
         content:
-          "AI-powered plastic identification for beauty packaging, with recycling history and eco points.",
+          "AI-inspected packaging take-back for beauty empties, with points you can spend in the Green Glam shop.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

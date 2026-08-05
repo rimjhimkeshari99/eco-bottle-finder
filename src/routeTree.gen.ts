@@ -10,11 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PartnersRouteImport } from './routes/partners'
+import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ApiIdentifyRouteImport } from './routes/api/identify'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersRoute = PartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiIdentifyRoute = ApiIdentifyRouteImport.update({
@@ -25,27 +37,35 @@ const ApiIdentifyRoute = ApiIdentifyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/partners': typeof PartnersRoute
+  '/shop': typeof ShopRoute
   '/api/identify': typeof ApiIdentifyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/partners': typeof PartnersRoute
+  '/shop': typeof ShopRoute
   '/api/identify': typeof ApiIdentifyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/partners': typeof PartnersRoute
+  '/shop': typeof ShopRoute
   '/api/identify': typeof ApiIdentifyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/identify'
+  fullPaths: '/' | '/partners' | '/shop' | '/api/identify'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/identify'
-  id: '__root__' | '/' | '/api/identify'
+  to: '/' | '/partners' | '/shop' | '/api/identify'
+  id: '__root__' | '/' | '/partners' | '/shop' | '/api/identify'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PartnersRoute: typeof PartnersRoute
+  ShopRoute: typeof ShopRoute
   ApiIdentifyRoute: typeof ApiIdentifyRoute
 }
 
@@ -56,6 +76,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners': {
+      id: '/partners'
+      path: '/partners'
+      fullPath: '/partners'
+      preLoaderRoute: typeof PartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/identify': {
@@ -70,6 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PartnersRoute: PartnersRoute,
+  ShopRoute: ShopRoute,
   ApiIdentifyRoute: ApiIdentifyRoute,
 }
 export const routeTree = rootRouteImport

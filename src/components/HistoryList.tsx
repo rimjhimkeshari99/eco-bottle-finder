@@ -1,21 +1,21 @@
 import { Leaf, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import type { RecycleEntry } from "@/lib/recycling";
+import { MATERIAL_LABEL, type DropEntry } from "@/lib/greenglam";
 
 export function HistoryList({
   entries,
   onRemove,
 }: {
-  entries: RecycleEntry[];
+  entries: DropEntry[];
   onRemove: (id: string) => void;
 }) {
   if (entries.length === 0) {
     return (
       <div className="surface flex flex-col items-center gap-2 rounded-3xl px-6 py-12 text-center">
         <Leaf className="size-6 text-leaf" />
-        <p className="font-semibold">No bottles logged yet</p>
+        <p className="font-semibold">No drop-offs yet</p>
         <p className="max-w-xs text-sm text-muted-foreground">
-          Scan your first empty and it will appear here with the points you earned.
+          Scan your first empty bottle and it will appear here with the points you earned.
         </p>
       </div>
     );
@@ -27,13 +27,13 @@ export function HistoryList({
         <li key={e.id} className="surface flex items-center gap-4 rounded-2xl p-3">
           <img
             src={e.image}
-            alt={`Recycled ${e.productName}`}
+            alt={`Dropped off ${e.productName}`}
             className="size-16 shrink-0 rounded-xl bg-muted object-cover"
           />
           <div className="min-w-0 flex-1">
             <p className="truncate font-semibold">{e.productName}</p>
             <p className="text-sm text-muted-foreground">
-              #{e.resinCode} {e.resinName} ·{" "}
+              {MATERIAL_LABEL[e.material]} · {e.condition} ·{" "}
               {new Date(e.createdAt).toLocaleDateString(undefined, {
                 month: "short",
                 day: "numeric",
